@@ -31,12 +31,13 @@ sock.settimeout(10)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 5000)
 
 while True:
+    signal.signal(signal.SIGINT, sigHandle())
+    signal.signal(signal.SIGTERM, sigHandle())
     # Accept connection from user
     userSocket = sock.accept()
     userAddress = sock.accept()
     sendAccio()
-    signal.signal(signal.SIGINT, sigHandle())
-    signal.signal(signal.SIGTERM, sigHandle())
+    
     userSocket.settimeout(10)
     while True:
         try:
@@ -51,6 +52,7 @@ while True:
     clientAcc().userSocket.close()
     sys.stdout.write(str(receieved))
     sys.stdout.flush()
+
 
 
 
