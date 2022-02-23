@@ -15,15 +15,11 @@ def sigHandle(sig,frame):
     sys.exit(0)
 
 
-def clientAcc():
-    # Accept connection from user
-    userSocket = sock.accept()
-    userAddress = sock.accept()
-
+def sendAccio():
     # Send accio message
     userSocket.send(bytes('accio\r\n', 'b""'))
     userAddress.send(bytes('accio\r\n', 'b""'))
-    userSocket.settimeout(10)
+
 
 try:
     sock.bind(('0.0.0.0',args.port))
@@ -36,9 +32,12 @@ sock.settimeout(10)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 5000)
 
 while True:
-    clientAcc()
+    # Accept connection from user
+    userSocket = sock.accept()
+    userAddress = sock.accept()
     signal.signal(signal.SIGINT, sigHandle())
     signal.signal(signal.SIGTERM, sigHandle())
+    userSocket.settimeout(10)
     while True:
         try:
             userInput = b""(clientAcc().userSocket.recv(15))
