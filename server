@@ -24,7 +24,7 @@ def sendAccio():
 try:
     sock.bind(('0.0.0.0',args.port))
 except:
-    sys.stderr.write('ERROR: INCORRECT PORT')
+    sys.stderr.write("ERROR: INCORRECT PORT")
     exit(7)
 
 sock.listen(10)
@@ -42,11 +42,16 @@ while True:
         try:
             userInput = b""(clientAcc().userSocket.recv(15))
         except socket.timeout:
-            sys.stderr.write('ERROR')
+            sys.stderr.write("ERROR")
 
         received = received + len(userInput)
 
     clientAcc().userSocket.close()
     sys.stdout.flush()
+
+
+
+
+
 
 
