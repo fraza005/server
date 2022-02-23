@@ -16,8 +16,8 @@ def sigHandle(sig,frame):
 
 def sendAccio():
     # Send accio message
-    userSocket.send(bytes('accio\r\n', 'utf-8'))
-    userAddress.send(bytes('accio\r\n', 'utf-8'))
+    userSocket.send(bytes('accio\r\n', 'b"'))
+    userAddress.send(bytes('accio\r\n', 'b"'))
 
 
 try:
@@ -37,7 +37,7 @@ while True:
     userSocket = sock.accept()
     userAddress = sock.accept()
     sendAccio()
-    
+
     userSocket.settimeout(10)
     while True:
         try:
@@ -52,6 +52,8 @@ while True:
     clientAcc().userSocket.close()
     sys.stdout.write(str(receieved))
     sys.stdout.flush()
+
+
 
 
 
