@@ -3,7 +3,6 @@ import sys
 import socket
 import argparse
 
-import setuptools
 
 parser = argparse.ArgumentParser()
 parser.add_argument('port', type = int)
@@ -17,14 +16,14 @@ def sigHandle(sig,frame):
 
 def sendAccio():
     # Send accio message
-    userSocket.send(bytes('accio\r\n', 'b""'))
-    userAddress.send(bytes('accio\r\n', 'b""'))
+    userSocket.send(bytes('accio\r\n', 'b"'))
+    userAddress.send(bytes('accio\r\n', 'b"'))
 
 
 try:
-    sock.bind(('0.0.0.0',args.port))
+    sock.bind(('0.0.0.0', args.port))
 except:
-    sys.stderr.write("ERROR: INCORRECT PORT")
+    sys.stderr.write('ERROR: INCORRECT PORT')
     exit(7)
 
 sock.listen(10)
@@ -40,18 +39,17 @@ while True:
     userSocket.settimeout(10)
     while True:
         try:
-            userInput = b""(clientAcc().userSocket.recv(15))
+            userInput = b(clientAcc().userSocket.recv(15))
         except socket.timeout:
-            sys.stderr.write("ERROR")
+            sys.stderr.write('ERROR')
 
         received = received + len(userInput)
 
+
+
     clientAcc().userSocket.close()
+    sys.stdout.write(str(receieved))
     sys.stdout.flush()
-
-
-
-
 
 
 
