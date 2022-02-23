@@ -16,13 +16,13 @@ def sigHandle(sig,frame):
 
 def sendAccio():
     # Send accio message
-    userSocket.send(bytes('accio\r\n', 'b"'))
-    userAddress.send(bytes('accio\r\n', 'b"'))
+    userSocket.send(bytes('accio\r\n', 'utf-8'))
+    userAddress.send(bytes('accio\r\n', 'utf-8'))
 
 
 try:
     sock.bind(('0.0.0.0', args.port))
-except:
+except Exception as ex:
     sys.stderr.write('ERROR: INCORRECT PORT')
     exit(7)
 
@@ -50,6 +50,3 @@ while True:
     clientAcc().userSocket.close()
     sys.stdout.write(str(receieved))
     sys.stdout.flush()
-
-
-
